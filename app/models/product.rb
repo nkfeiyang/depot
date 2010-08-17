@@ -4,7 +4,9 @@ class Product < ActiveRecord::Base
   validate :price_must_be_at_least_a_cent
   validates_uniqueness_of :title
   validates_format_of :image_url, :with => %r{\.(gif|jpg|png)}i, :message => 'must be a URL for image'
-
+  
+  has_many :line_items
+  
   def self.find_products_for_sale
     find(:all, :order => "title")
   end
